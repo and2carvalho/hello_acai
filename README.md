@@ -10,6 +10,16 @@ npm install
 npm run serve
 ```
 
+### Install python dependencies
+```
+pipenv install
+```
+
+### Run python server
+```
+python app.py
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
