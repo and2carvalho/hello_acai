@@ -40,7 +40,7 @@
                 </div>
               </b-row><br>
                <b-button @click="etapa = 0" pill block variant="outline-danger">Calma, quero voltar<b-icon icon="arrow-bar-up"></b-icon></b-button>
-              <b-button @click="semAdicional" class="mt-3" pill block variant="outline-primary">Finalizar Pedido<b-icon icon="arrow-bar-right"></b-icon></b-button>
+              <b-button @click="addComanda" class="mt-3" pill block variant="outline-primary">Finalizar Pedido<b-icon icon="arrow-bar-right"></b-icon></b-button>
             </div>
           </b-col>
           <b-col cols="4" v-else>
@@ -56,15 +56,15 @@
                       <b-tbody>
                         <b-tr>
                           <b-td>Tamanho</b-td>
-                          <b-td> {{ addPedidoAcai.tamanho }} </b-td>
+                          <b-td> {{ addPedidoAcai.tamanho }} - R$ {{ valor_tamanho}},00</b-td>
                         </b-tr>
                         <b-tr>
                           <b-td>Sabor</b-td>
-                          <b-td> {{ addPedidoAcai.sabor }} </b-td>
+                          <b-td> {{ addPedidoAcai.sabor }}</b-td>
                         </b-tr>
                         <b-tr >
                           <b-td>Adicional</b-td>
-                          <b-td> {{ addPedidoAcai.adicional }} </b-td>
+                          <b-td> {{ addPedidoAcai.adicional }} - R$ {{ valor_adicional}},00</b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>
@@ -75,7 +75,7 @@
                   </b-card>
                 </div>
               </b-row><br>
-              <b-button @click="etapa = 0" pill block variant="outline-danger">Pera aí, vamos voltar<b-icon icon="arrow-bar-up"></b-icon></b-button>
+              <b-button @click="etapa = 0; initForm()" pill block variant="outline-danger">Pera aí, vamos voltar<b-icon icon="arrow-bar-up"></b-icon></b-button>
               <b-button type="submit" pill block variant="outline-primary">Tudo certo, pode pedir<b-icon icon="arrow-bar-bottom"></b-icon></b-button>
             </div>
           </b-col>
@@ -98,6 +98,8 @@ export default {
       msg: "Monte Seu Açaí",
       op_tam: [],
       op_sabor: [],
+      valor_tamanho: 0,
+      valor_adicional: 0,
       addPedidoAcai: {
         tamanho: "",
         sabor: "",
@@ -117,12 +119,26 @@ export default {
       }
       else { this.etapa = 1}
     },
-    semAdicional() {
+    addComanda() {
       if (this.addPedidoAcai.adicional === undefined) {
         this.addPedidoAcai.adicional = "Sem adicional"
-        this.etapa = 2
       }
-      else { this.etapa = 2}
+      if (this.addPedidoAcai.tamanho === "Pequeno (300ml)") {
+        this.valor_tamanho += 10;
+      }
+      else if (this.addPedidoAcai.tamanho === "Médio (500ml)") {
+        this.valor_tamanho += 13;
+      }
+      else if (this.addPedidoAcai.tamanho === "Grande (700ml)") {
+        this.valor_tamanho += 15;
+      }
+      if (this.addPedidoAcai.adicional === "Paçoca") {
+        this.valor_adicional += 3;
+      }
+      else if (this.addPedidoAcai.adicional === "Leite Ninho") {
+        this.valor_adicional += 3;
+      }
+        this.etapa = 2
     },
     getData() {
       const path = "http://localhost:5000/pedido";
@@ -154,9 +170,11 @@ export default {
       );
     },
     initForm() {
-      this.addPedidoAcai.tamanho = "";
-      this.addPedidoAcai.sabor = "";
-      this.addPedidoAcai.adicional = [];
+      this.addPedidoAcai.tamanho = undefined;
+      this.addPedidoAcai.sabor = undefined;
+      this.addPedidoAcai.adicional = [],
+      this.valor_tamanho = 0,
+      this.valor_adicional = 0
     },
     onSubmit(e) {
       e.preventDefault();
