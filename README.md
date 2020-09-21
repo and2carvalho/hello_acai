@@ -1,4 +1,12 @@
-# hello_acai
+# Hello Açai
+
+<div>
+    <img style="width:30%;" src="src/assets/hello_acai_main.png"/>
+    <img style="width:30%;" src="src/assets/hello_acai_adicional.png"/>
+    <img style="width:30%;" src="src/assets/hello_acai_recibo.png"/>
+</div>
+
+<br>
 
 ## Project setup
 ```
