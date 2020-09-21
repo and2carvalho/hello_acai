@@ -1,10 +1,10 @@
-# Hello Açai
+# Hello Açai  :sunglasses:
 
-<div>
-    <img style="width:30%;" src="src/assets/hello_acai_main.png"/>
-    <img style="width:30%;" src="src/assets/hello_acai_adicional.png"/>
-    <img style="width:30%;" src="src/assets/hello_acai_recibo.png"/>
-</div>
+<p align="center">
+    <img width="200" height="250" src="src/assets/hello_acai_main.png"/> >>>  
+    <img  width="180" height="250" src="src/assets/hello_acai_adicional.png"/> >>>
+    <img  width="190" height="250" src="src/assets/hello_acai_recibo.png"/>
+</p>
 
 <br>
 
