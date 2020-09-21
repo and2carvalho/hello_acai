@@ -20,7 +20,7 @@ npm run serve
 
 ### Install python dependencies
 ```
-pipenv install
+pipenv shell
 ```
 
 ### Run python server
